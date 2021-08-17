@@ -5,10 +5,23 @@ function loadPosts(){
    return resultado.json();
   })
   .then(function(json){
-   document.getElementById('posts').innerHTML = json.length + ' posts';
-
+    montarBlog(json);
+  
   })
   .catch(function(error){
     console.log("erro");
   });
+}
+
+function montarBlog(lista){
+  let html = '';
+
+  for(let i=0;i<lista.length;i++){
+    html += '<h3>'+lista[i].title+'</h3>';
+    html += lista[i].body+'<br/>';
+    html += '<hr/>';
+
+  }
+  document.getElementById('posts').innerHTML = html;
+
 }
